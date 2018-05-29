@@ -1,16 +1,15 @@
 '''''''''''''''''''''''''''''''''''''''
 '' START CONFIG SECTION - EDIT THIS! ''
 '''''''''''''''''''''''''''''''''''''''
-	SavegamePath = "C:\Users\YOURUSERNAME\Documents\NBGI\DARK SOULS REMASTERED\YOUR ID"
+	SavegamePath = "C:\Users\YOURUSERNAME\Documents\NBGI\DARK SOULS REMASTERED\YOUR-ID"
 	SavegameFile = "DRAKS0005.sl2"
 
-	MaxBackupFiles = 20				'Number of maximun backup savegame files. 20 is ok
-	TimeBetweenBackups = 300000		'1000 = 1sec | 300000 = 300secs = 5 minutes
+	MaxBackupFiles = 25				'Number of maximun backup savegame files. 25 is ok
+	TimeBetweenBackups = 180000		'1000 = 1sec | 180000 = 180secs = 3 minutes
 
 '''''''''''''''''''''''''''''''''''''''
 '' END CONFIG SECTION - STOP EDITING ''
 '''''''''''''''''''''''''''''''''''''''
-
 
 Set oFSO = CreateObject("Scripting.FileSystemObject")
 Set oWSH = CreateObject("WScript.Shell")
@@ -29,14 +28,15 @@ If isDarksoulsPlaying = False Then
 End If
 
 counter = 1
+
 Do
 	If isDarksoulsPlaying = False Then
 		WScript.Quit			' Stop the backup-tool if DARKSOULS is closed
 	End If
 	oFSO.CopyFile SavegamePath & "\" & SavegameFile, SavegamePath & "\" & counter & "-" & SavegameFile
+
 	counter = counter + 1
-	If counter > MaxBackupFiles Then counter = 1
-	
+	If counter > MaxBackupFiles Then counter = 1	
 	WScript.Sleep TimeBetweenBackups	' Wait until we backup the savegame again
 Loop
 
@@ -51,4 +51,4 @@ End Function
 
 ' Credits /u/AikonCWD
 ' https://github.com/aikoncwd/DS1-backup-tool
-' Version = 1.0
+' Version = 2.0
